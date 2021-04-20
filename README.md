@@ -52,7 +52,7 @@ As following is the current list of features to be implemented:
 Emacs is a constant battle, a battle that Toaster hopes to help you win. 95% of the fight is getting Emacs useable, which Toaster does for you. From there on, its up to you to configure to your hearts content. Should you run into trouble, either trying to implement a feature, or struggling with a Toaster bug, don't hesitate to search for help in the following areas:
 - **Github Issues:** Look for an active discussion, and if no-one else has your problem, go ahead and create your own!
 - **Discord:** Coming soon...
-- **Documentation:* [A constant battle...](https://github.com/Aaron-Mann/toaster-emacs/blob/main/doc/doc.org)
+- **Documentation:** [A constant battle...](https://github.com/Aaron-Mann/toaster-emacs/blob/main/doc/doc.org)
 
 # Contribute
 
@@ -60,4 +60,5 @@ Emacs is a constant battle, a battle that Toaster hopes to help you win. 95% of 
 [![Elisp styleguide](https://img.shields.io/badge/elisp-style%20guide-purple?style=flat-square)](https://github.com/bbatsov/emacs-lisp-style-guide)
 
 ETH: `0x0F4A5595FC74a0279Dfe0aab8f5823B63400E15a`
+
 BEAM: `3205ba4fa07fb2c332079a1d725f9d8f5a79d9b8042d560343a2e6981419253d966`
