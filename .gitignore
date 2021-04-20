@@ -9,3 +9,9 @@
 
 # Undo-tree save-files
 *.~undo-tree
+
+auto-save-lists/**
+
+elpa/**
+
+recentf
