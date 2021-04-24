@@ -40,6 +40,8 @@ As following is the current list of features to be implemented:
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) 
 [![Elisp styleguide](https://img.shields.io/badge/elisp-style%20guide-purple?style=flat-square)](https://github.com/bbatsov/emacs-lisp-style-guide)
 
+All Functions, errors, and messages added by this config are seperated from vanilla emacs functions with the name "Toaster", ie: `toaster-log`. This naming convention should be used for any new functionality. 
+
 ETH: `0x0F4A5595FC74a0279Dfe0aab8f5823B63400E15a`
 
 BEAM: `3205ba4fa07fb2c332079a1d725f9d8f5a79d9b8042d560343a2e6981419253d966`
