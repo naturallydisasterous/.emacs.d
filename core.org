@@ -11,12 +11,6 @@ Contrary to what many Emacs users have in their configs, you don't need more tha
   (setq locale-coding-system 'utf-8)       ;; please
 #+end_src
 
-The clipboard's on Windows could be in a wider encoding than utf-8 (likely utf-16), so let Emacs/the OS decide what encoding to use there.
-#+begin_src emacs-lisp
-(unless IS-WINDOWS
-      (setq selection-coding-system 'utf-8)) ; with sugar on top
- #+end_src
-
 * Setup Packages
 
 #+begin_src emacs-lisp  
@@ -45,25 +39,19 @@ The clipboard's on Windows could be in a wider encoding than utf-8 (likely utf-1
 (defun toaster-install-core-packages ()
   (let ((pkgs (remove-if #'package-installed-p toaster-core-packages )))
     (when pkgs
-      (toaster-log "Toaster refreshinging Emacs packages database...")
       (package-refresh-contents)
-      (toaster-log "Package refresh complete.")
       (dolist (p toaster-core-packages)
 	(package-install p)))))
 
 
 ;; prepare emacs package archives:
 (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
-(toaster-log "Added GNU ELPA package archive.")
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-(toaster-log "Added MELPA package archive.")
 
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
-(toaster-log "Added MELPA-Stable package archive.")
 
 (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
-(toaster-log "Added ORG package archive.")
 
 ;; initialize emacs packages:
 (package-initialize)
@@ -81,6 +69,7 @@ with packaging working, and the important packages already installed, we can sta
 
 #+begin_src emacs-lisp
 (require 'evil)
+(evil-mode 1)
 #+end_src
 
 ** Dashboard
@@ -165,6 +154,17 @@ The scratch buffer is a waste of space, so lets brutally eleminate it:
 (add-hook 'window-setup-hook 'delete-other-windows)
 
 #+end_src
+
+** Remove Ugly UI Elements
+
+#+begin_src emacs-lisp
+(menu-bar-mode -1)
+
+(toggle-scroll-bar -1)
+
+(tool-bar-mode -1)
+#+end_src
+
 
 * Cleanup
 

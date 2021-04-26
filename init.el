@@ -3,22 +3,9 @@
 
 ;; with libraries prepared, we are ready to initialize Toaster. I'd say "let 'er rip!" in true doom fashion, but our mascot is a toaster.... So it has to be said. "Let 'er Toast!"
 
-(toaster-log "Libraries loaded. Starting core...")
-
-(toaster-initialize)
+(org-babel-load-file
+  (expand-file-name
+    "core.org"
+    user-emacs-directory))
 
 ;; Anything past this line was autofilled by emacs under (custom-set-variables)
-;; ===========================================================================
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(org evil all-the-icons dashboard doom-modeline doom-themes)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
