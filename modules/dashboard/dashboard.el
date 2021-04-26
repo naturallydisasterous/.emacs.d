@@ -1,1 +1,12 @@
+(setq dashboard-set-heading-icons t)
+(setq dashboard-set-file-icons t)
+(setq dashboard-banner-logo-title "As far as bloated text editors go, Emacs is pretty fuckin good")
+;; (setq dashboard-startup-banner "path/to/file.png")
+(setq dashboard-center-content t)
+(setq dashboard-items '((recents .100)
+				 (agenda . 5)
+				 (bookmarks . 5)
+				 (projects . 5)
+				 (registers . 5)))
+
 (dashboard-setup-startup-hook)

@@ -14,6 +14,10 @@
 			      ;; Modes:
 			      evil
 			      org
+
+			      ;; Tools
+			      projectile
+			      magit
 			     ))
 
 (defun toaster-install-core-packages ()
@@ -22,16 +26,6 @@
       (toaster-log "Toaster refreshinging Emacs packages database...")
       (package-refresh-contents)
       (toaster-log "Package refresh complete.")
-      (dolist (p toaster-core-packages)
-	(package-install p)))))
-
-;; Duplicate of the last two things, 'cept these two are for end user customization. Nothing much to see here, go ahead and move along:
-
-(setq toaster-custom-packages '())
-
-(defun toaster-install-custom-packages ()
-  (let ((pkgs (remove-if #'package-installed-p toaster-core-packages )))
-    (when pkgs
       (dolist (p toaster-core-packages)
 	(package-install p)))))
 
