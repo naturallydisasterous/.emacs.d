@@ -15,3 +15,5 @@ auto-save-lists/**
 elpa/**
 
 recentf
+
+core.el
