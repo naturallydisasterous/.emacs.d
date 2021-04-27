@@ -10,9 +10,9 @@ A Simple, Fully Featured, and Evil Emacs Config. Inspired by what Doom Emacs got
 
 # Design Goals and Features
 
-- **Configurable:** Speaking of end user configs, I provide excellent tools that make tweaking the environment as easy as changing a line! This includes both a `config.el` file for simple variable changes, and a `custom.el` file specifically tailored for building on top of the pre-existing ecosystem.
-- ***FUTURE FEATURE: Selective Language Support:*** This system allows a file to be created for each language you wish to use. Don't want to touch Javascript? Remove it's script. Disgusted by whitespace? `rm -rf .emacs.d/languages/python.el`. Interested in an unsupported language? Create `cobol.el`.
-
+- **Speed:** This emacs config unapologetically flies. With speeds comparable to doom emacs, you won't find a quicker config this much ease of use.
+- **Selective Language Support:** This system allows a file to be created for each language you wish to use. Don't want to touch Javascript? Remove it's script. Disgusted by whitespace? `rm -rf .emacs.d/languages/python.el`. Interested in an unsupported language? Create `cobol.el`.
+- **Boilerplate:** More than anything else, this repository acts as a jumping off point for one's own config. With easy to understand org-documented code, no other config provides such a simple starting point, with such useful defaults.
 # Prerequisites
 - Git 2.23+
 - Emacs 26.3 (although 27.2 is recommended)
@@ -31,9 +31,6 @@ Enjoy your emacs experience!
 
 As following is the current list of features to be implemented:
 - **TreeSelect:** Implement a reasonable, fast, and useful treeselect module.
-- **Languages:** Implement *Selective Language Support*, with the support for the following key languages: `C/C++`, `Python`, `JavaScript`, `Rust`, `Go`, and `Org`.
-- **Magit:** What else can I say? Get Magit up and running smoothly.
-- **Documentation:** The ongoing fight to keep projects useable...
 
 # Contribute
 

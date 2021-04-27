@@ -17,3 +17,11 @@ elpa/**
 recentf
 
 core.el
+
+recentf~
+
+snippets/**
+
+transient/**
+
+projectile-bookmarks.eld
