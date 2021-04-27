@@ -32,7 +32,8 @@ Navigate to your home directory, and issue the following command:
 `git clone --depth 1 https://github.com/Aaron-Mann/.emacs.d ~/.emacs.d`
 
 Now go ahead and run emacs! You should see a white screen with ELPA information across the bottom upon your first startup. No need to worry, this is just emacs configuring during its first startup. After processing for ~20 seconds, all packages should be installed and ready to operate. Just one last thing before emacs is ready...
-`M-x all-the-icons-install-fonts`
+
+`M-x all-the-icons-install-fonts` (M-x: ALT+x)
 
 Enjoy your emacs experience!
 
