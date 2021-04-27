@@ -6,7 +6,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/Aaron-Mann/.emacs.d)](https://github.com/Aaron-Mann/.emacs.d/stargazers)
 [![GitHub license](https://img.shields.io/github/license/Aaron-Mann/.emacs.d)](https://github.com/Aaron-Mann/.emacs.d/blob/main/LICENSE)
 
-A Simple, Fully Featured, and Evil Emacs Config. Inspired by what Doom Emacs got right, what Spacemacs got wrong, and with some new ideas and features that strive to make your life easier.
+A Simple, Fully Featured, and EVIL (Extensible VI Layer) Emacs Config. Inspired by what Doom Emacs got right, what Spacemacs got wrong, and with some new ideas and features that strive to make your life easier.
 
 # Design Goals and Features
 
