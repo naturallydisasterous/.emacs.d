@@ -13,9 +13,18 @@ A Simple, Fully Featured, and Evil Emacs Config. Inspired by what Doom Emacs got
 - **Speed:** This emacs config unapologetically flies. With speeds comparable to doom emacs, you won't find a quicker config this much ease of use.
 - **Selective Language Support:** This system allows a file to be created for each language you wish to use. Don't want to touch Javascript? Remove it's script. Disgusted by whitespace? `rm -rf .emacs.d/languages/python.el`. Interested in an unsupported language? Create `cobol.el`.
 - **Boilerplate:** More than anything else, this repository acts as a jumping off point for one's own config. With easy to understand org-documented code, no other config provides such a simple starting point, with such useful defaults.
+
 # Prerequisites
-- Git 2.23+
-- Emacs 26.3 (although 27.2 is recommended)
+
+#### Git 2.23+
+Ubuntu: `sudo apt install git`
+
+Arch: `sudo pacman -S git`
+
+#### Emacs 26.3 (although 27.2 is recommended)
+Ubuntu: `sudo apt install emacs`
+
+Arch: `sudo pacman -S emacs`
 
 # Install
 
