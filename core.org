@@ -14,51 +14,61 @@
 * Setup Packages
 
   #+begin_src emacs-lisp  
-    (require 'cl)
-    (require 'package)
+	    (require 'cl)
+	    (require 'package)
 
-    ;; set core packages. Note, this package list should not be edited. These are the core toaster dependencies, and removing these could jepardize modules. Rather, use the package install system available in the 'custom.el' file
-    ;; Another hint worth noting: No language related packages are installed here. Rather, they are individually installed in their language modules
+	    ;; set core packages. Note, this package list should not be edited. These are the core toaster dependencies, and removing these could jepardize modules. Rather, use the package install system available in the 'custom.el' file
+	    ;; Another hint worth noting: No language related packages are installed here. Rather, they are individually installed in their language modules
 
-    (setq toaster-core-packages '(
-				  ;; UI:
-				  doom-themes
-				  doom-modeline
-				  dashboard
-				  all-the-icons
+	    (setq toaster-core-packages '(
+					  ;; UI:
+					  doom-themes
+					  doom-modeline
+					  dashboard
+					  all-the-icons
+					  centaur-tabs
+					  treemacs
 
-				  ;; Modes:
-				  evil
-				  org
+					  ;; Modes:
+					  evil
+					  org
 
-				  ;; Tools
-				  projectile
-				  magit
-				  ))
+					  ;; Tools
+					  projectile
+					  magit
+					  smartparens
 
-    (defun toaster-install-core-packages ()
-      (let ((pkgs (remove-if #'package-installed-p toaster-core-packages )))
-	(when pkgs
-	  (package-refresh-contents)
-	  (dolist (p toaster-core-packages)
-	    (package-install p)))))
+					  lsp-mode
+					  lsp-ui
+					  company-box
+					  company
 
 
-    ;; prepare emacs package archives:
-    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+    ))
 
-    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+	    (defun toaster-install-core-packages ()
+	      (let ((pkgs (remove-if #'package-installed-p toaster-core-packages )))
+		(when pkgs
+		  (package-refresh-contents)
+		  (dolist (p toaster-core-packages)
+		    (package-install p)))))
 
-    (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-    (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+	    ;; prepare emacs package archives:
+	    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
 
-    ;; initialize emacs packages:
-    (package-initialize)
+	    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
-    ;; Install toaster packages
+	    (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
 
-    (toaster-install-core-packages)
+	    (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+	    ;; initialize emacs packages:
+	    (package-initialize)
+
+	    ;; Install toaster packages
+
+	    (toaster-install-core-packages)
   #+end_src
 
 * Modules (get all the crap working)
@@ -97,12 +107,35 @@
 
    Theres more stuff I wanna add here! I read somewhere that this bar can be configured to flash when a linter detects an error, which sounds rather fancy. Can't find it tho and I have more important things to work on ATM. Stay tuned!
 
+** Centaur Tabs
+
+#+begin_src emacs-lisp
+    (centaur-tabs-mode t)
+
+    (setq centaur-tabs-height 32)
+  (setq centaur-tabs-set-icons t)
+
+
+
+    (global-set-key (kbd "C-<prior>")  'centaur-tabs-backward)
+    (global-set-key (kbd "C-<next>") 'centaur-tabs-forward)
+
+  #+end_src
+
+
+** Company
+
+ #+begin_src emacs-lisp
+(add-hook 'company-mode-hook 'company-box-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+#+end_src
+
 ** Theme
 
    #+begin_src emacs-lisp
      (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
 	   doom-themes-enable-italic t) ; if nil, italics is universally disabled
-     (load-theme 'doom-one t)
+     (load-theme 'doom-nord t)
    #+end_src
 
 * Customizations
@@ -167,7 +200,8 @@
 ** Line Mode
 
 #+begin_src emacs-lisp
-(global-visual-line-mode 1)
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
 #+end_src
 ** Languages
 
