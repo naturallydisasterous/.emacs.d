@@ -20,6 +20,8 @@ core.el
 
 recentf~
 
+backup/**
+
 snippets/**
 
 transient/**
