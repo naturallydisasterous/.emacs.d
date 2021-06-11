@@ -203,6 +203,20 @@
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
 #+end_src
+
+** Backup Files
+
+#+begin_src emacs-lisp
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+  backup-by-copying t    ; Don't delink hardlinks
+  version-control t      ; Use version numbers on backups
+  delete-old-versions t  ; Automatically delete excess backups
+  kept-new-versions 20   ; how many of the newest versions to keep
+  kept-old-versions 5    ; and how many of the old
+  )
+#+end_src
+
+
 ** Languages
 
    The final and most important part. This just goes through the languages directory and executes each .el file:
