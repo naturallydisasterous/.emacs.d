@@ -1,24 +1,11 @@
-;; so long story short, certain versions of emacs (I'm looking at you Cemacs) tend to load 'init.el' before 'early-init.el'. This makes sure that 'early-init.el' is explicitly loaded first. Also, this keeps Toaster one step ahead of users who choose to load this file directly:
+;; so long story short, certain versions of emacs (I'm looking at you Cemacs) tend to load 'init.el' before 'early-init.el'. This makes sure that 'early-init.el' is explicitly loaded first. Also, this keeps me one step ahead of users who choose to load this file directly:
 (load (concat (file-name-directory load-file-name) "early-init"))
 
-;; with libraries prepared, we are ready to initialize Toaster. I'd say "let 'er rip!" in true doom fashion, but our mascot is a toaster.... So it has to be said. "Let 'er Toast!"
+;; load all modules
 
-(org-babel-load-file
-  (expand-file-name
-    "core.org"
-    user-emacs-directory))
+(load-user-file "packages.el")
 
-;; Anything past this line was autofilled by emacs under (custom-set-variables)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(rust-mode elpy haskell-mode magit projectile org evil all-the-icons dashboard doom-modeline doom-themes)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load-user-file "defaults.el")
+
+;; now that setup is complete, we can put GC back to normal
+(setq gc-cons-threshold 800000)
