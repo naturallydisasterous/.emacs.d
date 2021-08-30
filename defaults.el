@@ -72,6 +72,7 @@ kept-old-versions 5    ; and how many of the old
        ";; Open Terminal:    C-x C-t\n"
        ";; Run Command:      M-x\n"
        ";; Cancel Operation: C-g\n"
+       ";; Find in File:     C-c h o\n"
        ";;\n"
        ";; Windows:\n"
        ";;\n"
@@ -79,7 +80,7 @@ kept-old-versions 5    ; and how many of the old
        ";; Vertical Split:   C-w C-v\n"
        ";; Horizontal Split: C-w C-s\n"
        ";; Close Window:     C-w C-c\n"
-       ";; Navigate Windows: C-w C-(hjkl)\n"
+       ";; Navigate Windows: C-w hjkl\n"
        ";; Cycle Windows:    C-w C-w\n"
        ";;\n"
        ";; Buffers:\n"
@@ -87,6 +88,7 @@ kept-old-versions 5    ; and how many of the old
        ";; Next Buffer:      C-x -->\n"
        ";; Previous Buffer:  C-x <--\n"
        ";; View Buffers:     C-x C-b\n"
+       ";; Switch Buffer:    C-x b\n"
        ))
 
 (show-paren-mode 1)
