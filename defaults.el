@@ -84,6 +84,8 @@ kept-old-versions 5    ; and how many of the old
        ";;\n"
        ";; Buffers:\n"
        ";;\n"
+       ";; Next Buffer:      C-x -->\n"
+       ";; Previous Buffer:  C-x <--\n"
        ";; View Buffers:     C-x C-b\n"
        ))
 
