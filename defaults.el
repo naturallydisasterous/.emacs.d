@@ -73,6 +73,7 @@ kept-old-versions 5    ; and how many of the old
        ";; Run Command:      M-x\n"
        ";; Cancel Operation: C-g\n"
        ";; Find in File:     C-c h o\n"
+       ";; Project Tree:     C-x t t\n"
        ";;\n"
        ";; Windows:\n"
        ";;\n"

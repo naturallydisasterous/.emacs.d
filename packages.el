@@ -291,7 +291,7 @@
 
 (use-package vterm
   :ensure t
-  :bind (("C-x C-t" . vterm))
+;;  :bind (("C-x C-t" . vterm))
 )  
 
 (use-package lsp-mode
@@ -306,3 +306,12 @@
  
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+(use-package writeroom-mode
+  :ensure t
+  )
+
+(use-package general
+  :ensure t
+  :config
+  (general-evil-setup t))

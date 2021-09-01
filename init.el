@@ -7,5 +7,17 @@
 
 (load-user-file "defaults.el")
 
+(load-user-file "keyboard.el")
+
+;; load all lisp/* submodules
+
+(defun load-directory (dir)
+  (let ((load-it (lambda (f)
+                   (load-file (concat (file-name-as-directory dir) f)))
+                 ))
+    (mapc load-it (directory-files dir nil "\\.el$"))))
+
+(load-directory "~/.emacs.d/lisp/")
+
 ;; now that setup is complete, we can put GC back to normal
 (setq gc-cons-threshold 800000)

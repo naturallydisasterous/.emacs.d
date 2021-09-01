@@ -1,0 +1,16 @@
+
+;; ----- smex-history -----
+(
+ tetris
+ cd
+ 5x5
+ arp
+ dbx
+ dig
+ erc
+)
+
+;; ----- smex-data -----
+(
+ (tetris . 1)
+)
