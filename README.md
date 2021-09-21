@@ -8,11 +8,53 @@
 
 A Simple, Fully Featured, and EVIL (Extensible VI Layer) Emacs Config. Inspired by what Doom Emacs got right, what Spacemacs got wrong, and with some new ideas and features that strive to make your life easier.
 
-# Design Goals and Features
+```
+(require 'cl)
+   (require 'package)
 
-- **Speed:** This emacs config unapologetically flies. With speeds comparable to doom emacs, you won't find a quicker config this much ease of use.
-- **Selective Language Support:** This system allows a file to be created for each language you wish to use. Don't want to touch Javascript? Remove it's script. Disgusted by whitespace? `rm -rf .emacs.d/languages/python.el`. Interested in an unsupported language? Create `cobol.el`.
-- **Boilerplate:** More than anything else, this repository acts as a jumping off point for one's own config. With easy to understand org-documented code, no other config provides such a simple starting point, with such useful defaults.
+   ;; set core packages. Note, this package list should not be edited. These are the core toaster dependencies, and removing these could jepardize modules. Rather, use the package install system available in the 'custom.el' file
+   ;; Another hint worth noting: No language related packages are installed here. Rather, they are individually installed in their language modules
+
+   (setq toaster-core-packages '(
+				  ;; UI:
+				  doom-themes
+				  doom-modeline
+				  dashboard
+				  all-the-icons
+
+				  ;; Modes:
+				  evil
+				  org
+
+				  ;; Tools
+				  projectile
+				  magit
+				  ))
+
+   (defun toaster-install-core-packages ()
+     (let ((pkgs (remove-if #'package-installed-p toaster-core-packages )))
+	(when pkgs
+	  (package-refresh-contents)
+	  (dolist (p toaster-core-packages)
+	    (package-install p)))))
+
+
+   ;; prepare emacs package archives:
+   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+
+   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
+   (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+
+   (add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+   ;; initialize emacs packages:
+   (package-initialize)
+
+   ;; Install toaster packages
+
+   (toaster-install-core-packages)
+```
 
 # Prerequisites
 
