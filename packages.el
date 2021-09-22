@@ -22,6 +22,8 @@
                       lsp-mode
                       treemacs
                       treemacs-evil
+                      diff-hl
+                      flycheck
                       ))
 
 (defun install-user-packages () (
@@ -208,7 +210,10 @@
 
 (global-set-key (kbd "C-<return>") 'vterm)
 
-;; lsp-mode
+;; diff-hl
 
-(setq lsp-keymap-prefix "C-c l")
+(global-diff-hl-mode)
 
+;; flycheck
+
+(global-flycheck-mode)
