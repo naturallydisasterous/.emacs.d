@@ -123,7 +123,7 @@
 ;; helm
 
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "SPC f") 'helm-occur)
+(global-set-key (kbd "C-x f") 'helm-occur)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (setq helm-command-prefix-key "C-c h")
@@ -195,7 +195,7 @@
 
 ;; vtem
 
-(global-set-key (kbd "SPC t") 'vterm)
+(global-set-key (kbd "C-x t") 'vterm)
 
 ;; lsp-mode
 
