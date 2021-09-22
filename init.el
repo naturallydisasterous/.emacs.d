@@ -17,7 +17,7 @@
                  ))
     (mapc load-it (directory-files dir nil "\\.el$"))))
 
-(load-directory "~/.emacs.d/lisp/")
+;;(load-directory "~/.emacs.d/lisp/")
 
 ;; now that setup is complete, we can put GC back to normal
 (setq gc-cons-threshold 800000)

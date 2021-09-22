@@ -52,10 +52,10 @@ kept-old-versions 5    ; and how many of the old
        ";; Shortcuts:\n"
        ";;\n"
        ";; Open File:        C-x C-f\n"
-       ";; Open Terminal:    C-x t\n"
+       ";; Open Terminal:    C-Return\n"
        ";; Run Command:      M-x\n"
        ";; Cancel Operation: C-g\n"
-       ";; Find in File:     C-x o\n"
+       ";; Find in File:     C-h o\n"
        ";;\n"
        ";; Windows:\n"
        ";;\n"
@@ -72,6 +72,7 @@ kept-old-versions 5    ; and how many of the old
        ";; Previous Buffer:  C-x <--\n"
        ";; View Buffers:     C-x C-b\n"
        ";; Switch Buffer:    C-x b\n"
+       ";; Kill Buffer:      C-x b\n"
        ))
 
 (show-paren-mode 1)

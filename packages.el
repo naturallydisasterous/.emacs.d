@@ -2,14 +2,22 @@
 ;; emacs will auto-add this if not included:
 (require 'package)
 
+;; evil settings before we load evil:
+(setq evil-want-keybinding nil)
+(setq evil-want-integration t) ;; optional, defaults to true
+
+
+
 (setq user-packages '(
                       ;; UI
                       evil
+                      evil-collection
                       web-mode
                       helm
                       company
                       magit
                       doom-modeline
+		      doom-themes
                       vterm
                       lsp-mode
                       treemacs
@@ -55,8 +63,12 @@
 ;; Corrects (and improves) org-mode's native fontification.
 (doom-themes-org-config)
 
-;; evil
+;; evil: see L5
+
 (evil-mode 1)
+(evil-collection-init)
+
+
 
 ;; dired
 
@@ -123,7 +135,7 @@
 ;; helm
 
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x f") 'helm-occur)
+(global-set-key (kbd "C-h o") 'helm-occur)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 (setq helm-command-prefix-key "C-c h")
@@ -156,9 +168,6 @@
   (add-to-list 'helm-sources-using-default-as-input 'helm-source-man-pages)
   ;;(require 'helm-descbinds)
   ;;(helm-descbinds-mode)
-  (projectile-global-mode)
-  (setq projectile-completion-system 'helm)
-  (helm-projectile-on)
   (require 'helm-config)
   (setq helm-split-window-in-side-p         t ; open helm buffer inside current window, not occupy whole other window
         helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
@@ -189,13 +198,15 @@
               (define-key magit-mode-map (kbd ",o") 'delete-other-windows)))
 (add-hook 'git-commit-mode-hook 'evil-insert-state)
 
+(global-set-key (kbd "C-x m") 'magit-status)
+
 ;; doom-modeline
 
 (doom-modeline-mode 1)
 
 ;; vtem
 
-(global-set-key (kbd "C-x t") 'vterm)
+(global-set-key (kbd "C-<return>") 'vterm)
 
 ;; lsp-mode
 
