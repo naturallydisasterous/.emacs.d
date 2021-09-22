@@ -1,56 +1,66 @@
-;; Leave this here, or package.el will just add it again.
+(require 'cl)
+;; emacs will auto-add this if not included:
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
+
+(setq user-packages '(
+                      ;; UI
+                      evil
+                      web-mode
+                      helm
+                      company
+                      magit
+                      doom-modeline
+                      vterm
+                      lsp-mode
+                      treemacs
+                      treemacs-evil
+                      ))
+
+(defun install-user-packages () (
+                                 let ((pkgs (remove-if #'package-installed-p user-packages )))
+                                 (when pkgs
+                                   (package-refresh-contents)
+                                   (dolist (p user-packages)
+                                     (package-install p)))))
+
+;; add package archives:
+
+(add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/") t)
+
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+
+(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
+
+;; init emacs packages
 (package-initialize)
-(package-refresh-contents)
 
+;; install packages
+(install-user-packages)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; doom-themes
 
-(eval-when-compile
-  (require 'use-package))
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+(load-theme 'doom-nord t)
 
-;; --------
+;; Enable flashing mode-line on errors
+(doom-themes-visual-bell-config)
+;; Enable custom neotree theme (all-the-icons must be installed!)
+(doom-themes-neotree-config)
+;; or for treemacs users
+(setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
+(doom-themes-treemacs-config)
+;; Corrects (and improves) org-mode's native fontification.
+(doom-themes-org-config)
 
-(use-package doom-themes
-  :ensure t
-  :config
-  ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-nord t)
+;; evil
+(evil-mode 1)
 
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-  (doom-themes-treemacs-config)
-  ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config))
+;; dired
 
-(use-package evil
-  :ensure t
-  :config 
-  (evil-mode 1)
-  )
-
-(use-package all-the-icons
-  :ensure t
-  :defer t)
-
-(use-package all-the-icons-dired
-  :ensure t
-  :defer t)
-
-(use-package dired
-  :defer t
-  :config
-  (require 'dired-x)
+(require 'dired-x)
   (setq dired-omit-files "^\\.?#\\|^\\.[^.].*")
 
   (defun air-dired-buffer-dir-or-home ()
@@ -69,20 +79,11 @@
   (define-key dired-mode-map (kbd "c")       'find-file)
   (define-key dired-mode-map (kbd "/")       'counsel-grep-or-swiper)
   (define-key dired-mode-map (kbd "?")       'evil-search-backward)
-  (define-key dired-mode-map (kbd "C-c C-c") 'dired-toggle-read-only))
+(define-key dired-mode-map (kbd "C-c C-c") 'dired-toggle-read-only)
 
-(use-package elpy
-  :ensure t
-  :mode "\\.py\\'"
-  :config
-  (elpy-enable))
+;; web-mode
 
-
-(use-package web-mode
-  :ensure t
-  :mode "\\(?:\\(?:\\.\\(?:html\\|twig\\)\\)\\)\\'"
-  :config
-  (setq web-mode-attr-indent-offset 2
+(setq web-mode-attr-indent-offset 2
         web-mode-code-indent-offset 2
         web-mode-css-indent-offset 2
         web-mode-indent-style 2
@@ -117,33 +118,15 @@
                    (yas-deactivate-extra-mode 'php-mode))
                  (if (string= web-mode-cur-language "css")
                      (setq emmet-use-css-transform t)
-                   (setq emmet-use-css-transform nil))))))
+                   (setq emmet-use-css-transform nil)))))
 
+;; helm
 
-(use-package helm
-  ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
-  ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
-  ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
-  :demand t
-  :bind (("M-x" . helm-M-x)
-         ("C-c h o" . helm-occur)
-         ("<f1> SPC" . helm-all-mark-rings) ; I modified the keybinding 
-         ("M-y" . helm-show-kill-ring)
-         ("C-c h x" . helm-register)    ; C-x r SPC and C-x r j
-         ("C-c h g" . helm-google-suggest)
-         ("C-c h M-:" . helm-eval-expression-with-eldoc)
-         ("C-x C-f" . helm-find-files)
-         ("C-x b" . helm-mini)      ; *<major-mode> or /<dir> or !/<dir-not-desired> or @<regexp>
-         :map helm-map
-         ("<tab>" . helm-execute-persistent-action) ; rebind tab to run persistent action
-         ("C-i" . helm-execute-persistent-action) ; make TAB works in terminal
-         ("C-z" . helm-select-action) ; list actions using C-z
-         :map shell-mode-map
-         ("C-c C-l" . helm-comint-input-ring) ; in shell mode
-         :map minibuffer-local-map
-         ("C-c C-l" . helm-minibuffer-history))
-  :init
-  (setq helm-command-prefix-key "C-c h")
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "SPC f") 'helm-occur)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+(setq helm-command-prefix-key "C-c h")
   (setq recentf-save-file "~/.emacs.d/misc/recentf" ; customize yours
         recentf-max-saved-items 50)
   (require 'helm-eshell)        ; question
@@ -159,8 +142,8 @@
                      (let ((bg-color (face-background 'default nil)))
                        `(:background ,bg-color :foreground ,bg-color)))
         (setq-local cursor-type nil))))
-  :config
-  (when (executable-find "curl")
+
+(when (executable-find "curl")
     (setq helm-google-suggest-use-curl-p t))
   (setq helm-M-x-fuzzy-match t)
   (setq helm-buffers-fuzzy-matching t
@@ -188,130 +171,33 @@
   (setq helm-autoresize-max-height 0)
   (setq helm-autoresize-min-height 20)
   (helm-autoresize-mode 1)
-  (helm-mode 1)
-  )(use-package helm-org
-  :ensure t
-  :commands helm-org-agenda-files-headings)
+(helm-mode 1)
 
-(use-package company
-  :init
-  (setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-etags company-dabbrev)))
+;; company
 
-  :config
-  (global-company-mode 1))
+(setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-etags company-dabbrev)))
 
+(global-company-mode 1)
 
+;; magit
 
-
-(use-package emmet-mode
-  :ensure t
-  :commands emmet-mode
-  :config
-  (add-hook 'emmet-mode-hook
-            (lambda ()
-              (evil-define-key 'insert emmet-mode-keymap (kbd "C-S-l") 'emmet-next-edit-point)
-              (evil-define-key 'insert emmet-mode-keymap (kbd "C-S-h") 'emmet-prev-edit-point))))
-
-(use-package flycheck
-  :ensure t
-  :commands flycheck-mode)
-
-(use-package helm-projectile
-  :ensure t
-  :commands (helm-projectile helm-projectile-switch-project))
-
-(use-package markdown-mode
-  :ensure t
-  :mode "\\.md\\'"
-  :config
-  (setq markdown-command "pandoc --from markdown_github-hard_line_breaks --to html")
-  (define-key markdown-mode-map (kbd "<C-return>") 'markdown-insert-list-item)
-  (define-key markdown-mode-map (kbd "C-c '")      'fence-edit-code-at-point)
-  (define-key markdown-mode-map (kbd "C-c 1")      'markdown-insert-header-atx-1)
-  (define-key markdown-mode-map (kbd "C-c 2")      'markdown-insert-header-atx-2)
-  (define-key markdown-mode-map (kbd "C-c 3")      'markdown-insert-header-atx-3)
-  (define-key markdown-mode-map (kbd "C-c 4")      'markdown-insert-header-atx-4)
-  (define-key markdown-mode-map (kbd "C-c 5")      'markdown-insert-header-atx-5)
-  (define-key markdown-mode-map (kbd "C-c 6")      'markdown-insert-header-atx-6)
-
-  (add-hook 'markdown-mode-hook (lambda ()
-                                  (visual-line-mode t)
-                                  (set-fill-column 80)
-                                  (yas-minor-mode-on)
-                                  (hugo-minor-mode t)
-                                  (turn-on-auto-fill)
-                                  ;; Don't wrap Liquid tags
-                                  (setq auto-fill-inhibit-regexp (rx "{" (? "{") (1+ (or "%" "<" " ")) (1+ letter)))
-                                  (flyspell-mode))))
-
-(use-package yaml-mode
-  :ensure t
-  ;; .yaml or .yml
-  :mode "\\(?:\\(?:\\.y\\(?:a?ml\\)\\)\\)\\'")
-
-(use-package yasnippet
-  :ensure t
-  :defer t
-  :config
-  ;;(yas-reload-all)
-  (setq tab-always-indent 'complete)
-  (define-key yas-minor-mode-map (kbd "<escape>") 'yas-exit-snippet))
-
-(use-package yasnippet-snippets
-  :ensure t
-  :defer t)
-
-(use-package projectile
-  :ensure t
-  :defer t
-  :config
-  (projectile-mode)
-  (add-to-list 'projectile-globally-ignored-directories "*node_modules")
-  (setq projectile-enable-caching t)
-  (setq projectile-mode-line
-        '(:eval
-          (format " Proj[%s]"
-                  (projectile-project-name)))))
-
-(use-package magit
-  :ensure t
-  :defer t
-  :config
-  (setq magit-branch-arguments nil)
+(setq magit-branch-arguments nil)
   (setq magit-push-always-verify nil)
   (setq magit-last-seen-setup-instructions "1.4.0")
   (add-hook 'magit-mode-hook
             (lambda ()
               (define-key magit-mode-map (kbd ",o") 'delete-other-windows)))
-  (add-hook 'git-commit-mode-hook 'evil-insert-state))
+(add-hook 'git-commit-mode-hook 'evil-insert-state)
 
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
+;; doom-modeline
 
-(use-package vterm
-  :ensure t
-;;  :bind (("C-x C-t" . vterm))
-)  
+(doom-modeline-mode 1)
 
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (XXX-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
- 
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+;; vtem
 
-(use-package writeroom-mode
-  :ensure t
-  )
+(global-set-key (kbd "SPC t") 'vterm)
 
-(use-package general
-  :ensure t
-  :config
-  (general-evil-setup t))
+;; lsp-mode
+
+(setq lsp-keymap-prefix "C-c l")
+

@@ -46,23 +46,6 @@ kept-old-versions 5    ; and how many of the old
 (setq initial-scratch-message
       (concat
 
-       ";; EEEEEEEEEEEEEEEEEEEEEEMMMMMMMM               MMMMMMMM               AAA                  CCCCCCCCCCCCC   SSSSSSSSSSSSSSS\n" 
-       ";; E::::::::::::::::::::EM:::::::M             M:::::::M              A:::A              CCC::::::::::::C SS:::::::::::::::S\n" 
-       ";; E::::::::::::::::::::EM::::::::M           M::::::::M             A:::::A           CC:::::::::::::::CS:::::SSSSSS::::::S\n" 
-       ";; EE::::::EEEEEEEEE::::EM:::::::::M         M:::::::::M            A:::::::A         C:::::CCCCCCCC::::CS:::::S     SSSSSSS\n" 
-       ";;   E:::::E       EEEEEEM::::::::::M       M::::::::::M           A:::::::::A       C:::::C       CCCCCCS:::::S\n" 
-       ";;   E:::::E             M:::::::::::M     M:::::::::::M          A:::::A:::::A     C:::::C              S:::::S\n"
-       ";;   E::::::EEEEEEEEEE   M:::::::M::::M   M::::M:::::::M         A:::::A A:::::A    C:::::C               S::::SSSS\n"
-       ";;   E:::::::::::::::E   M::::::M M::::M M::::M M::::::M        A:::::A   A:::::A   C:::::C                SS::::::SSSSS\n"
-       ";;   E:::::::::::::::E   M::::::M  M::::M::::M  M::::::M       A:::::A     A:::::A  C:::::C                  SSS::::::::SS\n"
-       ";;   E::::::EEEEEEEEEE   M::::::M   M:::::::M   M::::::M      A:::::AAAAAAAAA:::::A C:::::C                     SSSSSS::::S\n"
-       ";;   E:::::E             M::::::M    M:::::M    M::::::M     A:::::::::::::::::::::AC:::::C                          S:::::S\n"
-       ";;   E:::::E       EEEEEEM::::::M     MMMMM     M::::::M    A:::::AAAAAAAAAAAAA:::::AC:::::C       CCCCCC            S:::::S\n"
-       ";; EE::::::EEEEEEEE:::::EM::::::M               M::::::M   A:::::A             A:::::AC:::::CCCCCCCC::::CSSSSSSS     S:::::S\n"
-       ";; E::::::::::::::::::::EM::::::M               M::::::M  A:::::A               A:::::ACC:::::::::::::::CS::::::SSSSSS:::::S\n"
-       ";; E::::::::::::::::::::EM::::::M               M::::::M A:::::A                 A:::::A CCC::::::::::::CS:::::::::::::::SS\n"
-       ";; EEEEEEEEEEEEEEEEEEEEEEMMMMMMMM               MMMMMMMMAAAAAAA                   AAAAAAA   CCCCCCCCCCCCC SSSSSSSSSSSSSSS\n"
-       "\n"
        ";; This buffer is for text that is not saved, and for Lisp evaluation.\n"
        ";; To evaluate elisp, navigate to end of buffer, then C-x C-e.\n"
        ";;\n"
