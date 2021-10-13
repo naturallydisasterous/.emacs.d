@@ -21,3 +21,5 @@
 
 ;; now that setup is complete, we can put GC back to normal
 (setq gc-cons-threshold 800000)
+
+(message "If this is your first installation, make sure to run `M-x company-tabnine-install-binary`")

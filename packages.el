@@ -15,6 +15,7 @@
                       web-mode
                       helm
                       company
+                      company-tabnine
                       magit
                       doom-modeline
 		      doom-themes
@@ -186,9 +187,13 @@
 
 ;; company
 
-(setq company-backends '((company-files company-keywords company-capf company-dabbrev-code company-etags company-dabbrev)))
+(add-hook 'after-init-hook 'global-company-mode)
 
-(global-company-mode 1)
+(setq company-backends '(company-tabnine))
+;; trigger completion immediately
+(setq company-idle-delay 0)
+
+(setq company-show-numbers t)
 
 ;; magit
 
