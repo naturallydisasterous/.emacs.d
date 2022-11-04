@@ -14,17 +14,19 @@
                       evil-collection
                       web-mode
                       helm
-                      company
-                      company-tabnine
+                      ;; company
+                      ;; company-tabnine
                       magit
                       doom-modeline
 		      doom-themes
                       vterm
                       lsp-mode
-                      treemacs
-                      treemacs-evil
                       diff-hl
                       flycheck
+
+                      projectile
+                      dumb-jump
+                      org-bullets
                       ))
 
 (defun install-user-packages () (
@@ -54,7 +56,7 @@
 
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
       doom-themes-enable-italic t) ; if nil, italics is universally disabled
-(load-theme 'doom-nord t)
+(load-theme 'doom-gruvbox-light t)
 
 ;; Enable flashing mode-line on errors
 (doom-themes-visual-bell-config)
@@ -187,13 +189,13 @@
 
 ;; company
 
-(add-hook 'after-init-hook 'global-company-mode)
-
-(setq company-backends '(company-tabnine))
-;; trigger completion immediately
-(setq company-idle-delay 0)
-
-(setq company-show-numbers t)
+;; company(add-hook 'after-init-hook 'global-company-mode)
+;; company
+;; company(setq company-backends '(company-tabnine))
+;; company;; trigger completion immediately
+;; company(setq company-idle-delay 0)
+;; company
+;; company(setq company-show-numbers t)
 
 ;; magit
 
@@ -222,3 +224,16 @@
 ;; flycheck
 
 (global-flycheck-mode)
+
+;; projectile
+(projectile-mode +1)
+
+;; dumb-jump
+
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
+;; org-bullets
+
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; this is the end of the file idk how to officially end it so this will just eternally have blue fuzzies under it
