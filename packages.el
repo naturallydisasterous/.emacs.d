@@ -27,6 +27,8 @@
                       projectile
                       dumb-jump
                       org-bullets
+		      
+		      nyan-mode
                       ))
 
 (defun install-user-packages () (
@@ -235,5 +237,9 @@
 ;; org-bullets
 
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+;; nyan-mode
+
+
 
 ;; this is the end of the file idk how to officially end it so this will just eternally have blue fuzzies under it
